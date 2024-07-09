@@ -12,8 +12,10 @@ from .serializer import Validator,BookSerializer
 @api_view(['POST'])
 def logins(request):
     if not request.user.is_authenticated ==True:
-        fm = Authentication(request=request,data=request.data)
+        print(request.data)
+        fm = Authentication(request=request,data=request.POST)
         if fm.is_valid():
+            print("hello")
             username  = fm.cleaned_data['username']
             password = fm.cleaned_data['password']
             user = authenticate(username = username,password =password)
